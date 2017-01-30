@@ -1,0 +1,26 @@
+function err = update_aacgmv2coefs( fdir )
+% 
+% Update the spherical harmonic coefficients file
+% aacgmv2coefs.mat. At time of writing this function, the latest
+% coefficients are availble in
+% https://engineering.dartmouth.edu/superdarn/aacgm.html 
+% Download the package aacgm_coeffs-12.tar and untar its
+% contents.
+%
+% The updated coefficient file aacgmv2coefs.mat is written in the
+% current working directory. 
+% 
+% INPUT:
+%  fdir   path to the directory with aacgm coefficient files. The
+%         file names MUST end with yyyy.asc, where yyyy is year,
+%         and the directory fdir MUST NOT contain any other files
+%         than valid coefficient files. 
+% 
+% OUTPUT:
+%  err    0 if the file was successfully created
+% 
+% 
+% IV 2016
+% 
+
+end

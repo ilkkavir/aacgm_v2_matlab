@@ -157,8 +157,8 @@ iiprev = min(iitmp(1:2));
 iinext = max(iitmp(1:2));
 yyprev = aacgmv2years(iiprev);
 yynext = aacgmv2years(iinext);
-weightprev = (dyear-yyprev)/(yynext-yyprev);
-weightnext = 1 - weightprev;
+weightnext = (dyear-yyprev)/(yynext-yyprev);
+weightprev = 1 - weightnext;
 coefsdyear = squeeze(aacgmv2coefs(iiprev,:,:,:,:).*weightprev + ...
                      aacgmv2coefs(iinext,:,:,:,:).*weightnext);
 
@@ -175,6 +175,7 @@ z = 0;
 
 lon_input = lon_in*DTOR;
 
+colat_input = (90.-lat_in)*DTOR;
 if code==1 % inverse transform aacgmv2 -> geodetic
     r1 = cos(lat_in*DTOR);
     ra = (height_in/RE + 1)*(r1*r1);
@@ -182,9 +183,9 @@ if code==1 % inverse transform aacgmv2 -> geodetic
         error()
     end
     r1 = acos(sqrt(ra));
-    lat_adj = abs(r1)*sign(lat_in);
+    lat_adj = abs(r1)*sign(lat_in)/DTOR;
+    colat_input = (90.-lat_adj)*DTOR;
 end
-colat_input = (90.-lat_in)*DTOR;
 
 
 % compute the values of spherical harmonic functions. There seems
